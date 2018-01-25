@@ -1,0 +1,28 @@
+<!doctype html>
+<title>Prepare to be Arbitrated</title>
+<h1>Arbitrater</h1>
+
+<form action="/home" method="post" id="loginForm">
+  <h4><b>Login</b> to save submission or see your saved documents</h4><br>
+  Email: <input type="text" name="email"><br>
+  Password: <input type="text" name="password"><br>
+</form>
+
+
+<form action="/text" method="post" id="textForm">
+    <h3>Title:</h3><br>
+    <input type="text" name="title">
+    <h3>Text:</h3>
+    <textarea rows="4" cols="50" name="textAreaItem" required>Insert Text Here</textarea>
+    <br>
+    <h3>Genre:</h3>
+    <input type="radio" name="Genre" value="nonfiction" required>Nonfiction
+    <input type="radio" name="Genre" value="fiction" required>Fiction
+    <br>
+    <h3>User Information</h3>
+    First Name:<br>
+    <input type="text" name="firstname"><br>
+    Last Name:<br>
+    <input type="text" name="lastname">
+    <p><input type="submit" value="Submit"></p>
+</form>

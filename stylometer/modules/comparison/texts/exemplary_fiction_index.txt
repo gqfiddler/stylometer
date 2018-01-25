@@ -1,0 +1,14 @@
+Atwood.txt, Margaret Atwood
+Chekhov.txt, Anton Chekhov
+Christie.txt, Agatha Christie
+Diaz.txt, Junot Diaz
+Gaiman.txt, Neil Gaiman
+Hemingway.txt, Ernest Hemingway
+InfiniteJest.txt, David Foster Wallace
+King.txt, Stephen King
+Lahiri.txt, Jhumpa Lahiri
+LeGuin.txt, Ursula K Le Guin
+McCarthy.txt, Cormac McCarthy
+Morrison.txt, Toni Morrison
+Murakami.txt, Haruki Murakami
+Rowling.txt, J.K. Rowling
