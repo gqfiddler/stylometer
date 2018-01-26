@@ -76,9 +76,9 @@ def findClosest(textVector, genre):
         genre: genre of text ("fiction" or "nonfiction")
 
     Returns:
-        a list of three tuples (minkowskiDistance, author) of the three writers
-        at the least minkowski distances from the submitted vector, ordered from
-        least distance to greatest
+        a string explaining the three most stylistically similar authors and their
+        minkowski distances from the author's style, ordered from least distance 
+        to greatest
     '''
     distanceTuples = []
     if genre == "fiction":
@@ -92,7 +92,12 @@ def findClosest(textVector, genre):
         distanceTuples.append((round(distance, 2), vector[0]))
     # return three closest (distance, author) tuples
     distanceTuples.sort()
-    return distanceTuples[:3]
+    similarityReport = "The author in our database whose style is nearest to yours \
+    is {} with a difference quotient of {}, followed by {} ({}) and {} ({})\
+    .".format(distanceTuples[0][1], str(distanceTuples[0][0]), distanceTuples[1][1],
+    str(distanceTuples[1][0]), distanceTuples[2][1], str(distanceTuples[2][0]))
+
+    return similarityReport
 
 def makeSuggestions(textVector, genre):
     '''

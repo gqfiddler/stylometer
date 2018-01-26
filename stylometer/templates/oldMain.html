@@ -1,0 +1,99 @@
+<!doctype html>
+<title>Stylometer</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+<div>
+
+<h1 id="specialhead">Stylometer</h1>
+<h2>how you write is how they see you</h2>
+
+<form style="form_1" action="/text" method="post" id="textForm">
+    <h3>Title:</h3><br>
+    <input type="text" name="title">
+    <h3>Text:</h3>
+    <textarea rows="4" cols="50" name="textAreaItem" required>Past the whole shebang here (but leave out any bibliography or works cited pages)</textarea>
+    <br>
+    <h3>Genre:</h3>
+    <input type="radio" name="Genre" value="nonfiction" required>Nonfiction
+    <input type="radio" name="Genre" value="fiction" required>Fiction
+    <br>
+    <p><input type="submit" value="Submit"></p>
+</form>
+</div>
+
+<!--TRANSITIONAL-->
+<!doctype html>
+<!--
+<head>
+  <title>Stylometer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main2.css') }}">
+</head>
+-->
+
+<style>
+h1 {
+    text-align: center;
+    font-family: "Georgia", sans-serif;
+    color: black;
+    font-weight: bold;
+}
+h2 {
+  text-align: center;
+  font-family: "Georgia", sans-serif;
+  color: black;
+  font-weight: normal;
+  font-style: italic
+}
+
+form {
+max-width: 550px;
+padding: 10px 20px;
+background: #f4f7f8;
+margin: 10px auto;
+padding: 20px;
+background: #f4f7f8;
+border-radius: 10px;
+font-family: "Georgia", Times, serif;
+}
+
+input[type="text"], textarea {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background: rgba(255,255,255,.1);
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  margin: 0;
+  outline: 0;
+  padding: 7px;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  background-color: #e8eeef;
+  color:#8a97a0;
+  -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 10px;
+  margin-top: -20px;
+}
+</style>
+
+<div>
+
+<h1 >Stylometer</h1>
+<h2>because how you write is how they see you</h2>
+
+<form style="form_1" action="/text" method="post" id="textForm">
+    <h3>Title:</h3><br>
+    <input type="text" name="title">
+    <h3>Genre:</h3>
+    <input type="radio" name="Genre" value="nonfiction" required>Nonfiction
+    <input type="radio" name="Genre" value="fiction" required>Fiction
+    <br>
+    <br>
+    <h3>Text:</h3>
+    <br>
+    <textarea rows="4" cols="50" name="textAreaItem" required>Paste the whole shebang here – but leave out any bibliography or works cited pages</textarea>
+    <p><input type="submit" value="Submit"></p>
+</form>
+</div>

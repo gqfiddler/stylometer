@@ -31,7 +31,7 @@ class Submission(object):
         passivity = self.vector[9]
         fkLevel = self.vector[5]
         toBeVerbCount = self.vector[2]
-        comparisons = comparison.findClosest(self.vector, self.genre)
+        similarityReport = comparison.findClosest(self.vector, self.genre)
         suggestions = comparison.makeSuggestions(self.vector, self.genre)
         if self.genre == "nonfiction":
             vectorList = comparison.readVectors("modules/comparison/data/allNonfictionDataSTDD.csv")
@@ -41,16 +41,15 @@ class Submission(object):
 
         report = {
           "Title" : title,
-          "Genre" : genre,
+          "Authors with similar styles" : similarityReport,
+          "Suggestions" : suggestions,
           "Average Sentence Length" : round(sentenceAverage, 2),
           "Sentence Length Coefficient of Variation" : round(sentenceCV, 2),
           "Lexical Diversity" : round(lexicalDiversity, 2),
           "Nominalizations" : round(nominalizations, 2),
           "Passivity" : round(passivity, 2),
           "'to be' verb usage rate" : round(toBeVerbCount, 2),
-          "Flesch-Kincaid reading level (grade)" : round(fkLevel, 2),
-          "Authors with similar styles" : comparisons,
-          "Suggestions" : suggestions
+          "Flesch-Kincaid reading level (grade)" : round(fkLevel, 2)
         }
 
         # self.storeReport(report)

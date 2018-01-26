@@ -1,28 +1,25 @@
 <!doctype html>
-<title>Prepare to be Arbitrated</title>
-<h1>Arbitrater</h1>
 
-<form action="/home" method="post" id="loginForm">
-  <h4><b>Login</b> to save submission or see your saved documents</h4><br>
-  Email: <input type="text" name="email"><br>
-  Password: <input type="text" name="password"><br>
-</form>
+<head>
+  <title>Stylometer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
 
+<div>
 
-<form action="/text" method="post" id="textForm">
-    <h3>Title:</h3><br>
+<h1 >Stylometer</h1>
+<h2>because how you write is how they see you</h2>
+
+<form style="form_1" action="/text" method="post" id="textForm">
+    <h3>Title:</h3>
     <input type="text" name="title">
-    <h3>Text:</h3>
-    <textarea rows="4" cols="50" name="textAreaItem" required>Insert Text Here</textarea>
-    <br>
     <h3>Genre:</h3>
-    <input type="radio" name="Genre" value="nonfiction" required>Nonfiction
     <input type="radio" name="Genre" value="fiction" required>Fiction
+    <input type="radio" name="Genre" value="nonfiction" required>Nonfiction/essay
     <br>
-    <h3>User Information</h3>
-    First Name:<br>
-    <input type="text" name="firstname"><br>
-    Last Name:<br>
-    <input type="text" name="lastname">
-    <p><input type="submit" value="Submit"></p>
+    <br>
+    <h3>Your Text:</h3>
+    <textarea rows="4" cols="50" name="textAreaItem" required>Paste the whole shebang here</textarea>
+    <p><input type="submit" value="Submit for feedback"></p>
 </form>
+</div>
