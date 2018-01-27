@@ -8,7 +8,7 @@ table of exemplary writing in the specified genre
 
 findClosest: finds the three most similar authors to a submission
 
-makeSuggestions: analyzes a submission and generates a paragraph of suggestions
+makeRecommendations: analyzes a submission and generates a paragraph of recommendations
 for improvement
 
 dendroPlot: generates a dendrogram from a list of vectors & 64-byte encodes it
@@ -49,7 +49,7 @@ def standardizeVector(textVector, genre):
         genre: the genre of the text ("fiction" or "nonfiction")
 
     Returns:
-        a version of textVector with all values z-score standardized to the
+        a version of textVector with all values z-score-standardized to the
             dataset of exemplary writing in its genre
     '''
     # get comparison set
@@ -77,7 +77,7 @@ def findClosest(textVector, genre):
 
     Returns:
         a string explaining the three most stylistically similar authors and their
-        minkowski distances from the author's style, ordered from least distance 
+        minkowski distances from the author's style, ordered from least distance
         to greatest
     '''
     distanceTuples = []
@@ -92,14 +92,14 @@ def findClosest(textVector, genre):
         distanceTuples.append((round(distance, 2), vector[0]))
     # return three closest (distance, author) tuples
     distanceTuples.sort()
-    similarityReport = "The author in our database whose style is nearest to yours \
-    is {} with a difference quotient of {}, followed by {} ({}) and {} ({})\
-    .".format(distanceTuples[0][1], str(distanceTuples[0][0]), distanceTuples[1][1],
+    similarityReport = "The authors in our database whose styles are most like yours \
+    are {}, with a difference quotient of {}, followed by {} ({}) and {} ({}).\
+    ".format(distanceTuples[0][1], str(distanceTuples[0][0]), distanceTuples[1][1],
     str(distanceTuples[1][0]), distanceTuples[2][1], str(distanceTuples[2][0]))
 
     return similarityReport
 
-def makeSuggestions(textVector, genre):
+def makeRecommendations(textVector, genre):
     '''
     Args:
         textVector: a vector of data analyzed from a text
@@ -107,29 +107,29 @@ def makeSuggestions(textVector, genre):
         genre: the genre of text ("fiction" or "nonfiction")
 
     Returns:
-        a paragraph of suggestions for improving the submitted text
+        a paragraph of recommendations for improving the submitted text
     '''
-    suggestions = []
+    recommendations = []
     stdTextVector = standardizeVector(textVector, genre)
     if genre == "nonfiction":
         relevantFeatures = [
-        (" how often you use forms of \"to be\"", 2, "reduce"),
-        (" how often you use nominalizations", 8, "reduce"),
-        (" how often you use passive verbs", 9, "reduce"),
-        (" the average sentence length", 11, "increase"),
-        (" the average sentence length", 11, "reduce"),
-        (" the variety of sentence lengths", 12, "increase"),
-        (" the average clause length", 10, "reduce") # TODO: this is the OPPOSITE of punct density
+        ("how often you use forms of \"to be\"", 2, "reduce"),
+        ("how often you use nominalizations", 8, "reduce"),
+        ("how often you use passive verbs", 9, "reduce"),
+        ("the average sentence length", 11, "increase"),
+        ("the average sentence length", 11, "reduce"),
+        ("the variety of sentence lengths you use", 12, "increase"),
+        ("the average clause length", 10, "reduce") # TODO: this is the OPPOSITE of punct density
         ]
     if genre == "fiction":
         relevantFeatures = [
-        (" the number of adverbs", 1, "reduce"),
-        (" how often you use forms of \"to be\"", 2, "reduce"),
-        (" the proportion of Latinate to Germanic words", 6, "reduce"),
-        (" how often you use passive verbs", 9, "reduce"),
-        (" the average sentence length", 11, "increase"),
-        (" the average sentence length", 11, "reduce"),
-        (" the variety of sentence lengths", 12, "increase"),
+        ("the number of adverbs", 1, "reduce"),
+        ("how often you use forms of \"to be\"", 2, "reduce"),
+        ("the proportion of Latinate to Germanic words", 6, "reduce"),
+        ("how often you use passive verbs", 9, "reduce"),
+        ("the average sentence length", 11, "increase"),
+        ("the average sentence length", 11, "reduce"),
+        ("the variety of sentence lengths you use", 12, "increase"),
         # ("uses of clichés", 1)
         ]
 
@@ -139,56 +139,56 @@ def makeSuggestions(textVector, genre):
         changeType = tup[2]
         if (stdTextVector[index] > .5 and changeType == "reduce") \
         or (stdTextVector[index] < -.5 and changeType == "increase"):
-            suggestions.append((abs(stdTextVector[index]), featureName, changeType))
+            recommendations.append((abs(stdTextVector[index]), featureName, changeType))
 
-    suggestions.sort()
+    recommendations.sort()
 
-    suggestionString = ""
-    if len(suggestions) > 0:
-        deviations = suggestions[0][0]
-        featureName = suggestions[0][1]
-        changeType = suggestions[0][2]
+    recommendationString = ""
+    if len(recommendations) > 0:
+        deviations = recommendations[0][0]
+        featureName = recommendations[0][1]
+        changeType = recommendations[0][2]
         if deviations > 1.2:
             adverb = ""
         else:
             adverb = "probably"
-        suggestionString += "Judging by our metrics, you should " + adverb + " " \
-        + changeType + featureName + " in your piece.  "
-    if len(suggestions) > 1:
-        deviations = suggestions[1][0]
-        featureName = suggestions[1][1]
-        changeType = suggestions[1][2]
+        recommendationString += "Judging by our metrics, you should {} {} {} \
+        in your piece.  ".format(adverb, changeType, featureName)
+    if len(recommendations) > 1:
+        deviations = recommendations[1][0]
+        featureName = recommendations[1][1]
+        changeType = recommendations[1][2]
         if deviations > 1.2:
             adverb = "likely"
         else:
             adverb = "may" # yeah yeah, it's not an adverb, I know
-        suggestionString += "You  " + adverb + " ought to " + changeType \
-         + featureName + " as well.  "
-    if len(suggestions) > 2:
-        deviations = suggestions[2][0]
-        featureName = suggestions[2][1]
-        changeType = suggestions[2][2]
-        suggestionString += "Finally, consider trying to " + changeType \
-         + featureName + "."
+        recommendationString += "You {} ought to {} {} as well.  \
+        ".format(adverb, changeType, featureName)
+    if len(recommendations) > 2:
+        deviations = recommendations[2][0]
+        featureName = recommendations[2][1]
+        changeType = recommendations[2][2]
+        recommendationString += "Finally, consider trying to {} {}. \
+        ".format(changeType, featureName)
 
-    return suggestionString
+    return recommendationString
 
 def dendroPlot(vectorList):
     '''
     Args:
-        vectorList: a list of vectors of text data
+        vectorList: a list of standardized vectors of text data
 
     Returns:
-        a 64-byte-encoded dendrogram matplotlib plot
+        a 64-byte-encoded dendrogram from matplotlib
     '''
     authors = [vector[0] for vector in vectorList]
     statlineMatrix = [vector[1:] for vector in vectorList]
-    linkMat = linkage(statlineMatrix, method="average")
+    linkMat = linkage(statlineMatrix, method="ward")
     # make plot
     plt.figure(1)
-    plt.title("author comparisons")
-    plt.subplots_adjust(bottom=0.25)
-    dendrogram(linkMat, labels=authors, leaf_rotation=90, leaf_font_size=8)
+    plt.title("Style similarity (Ward hierarchical clustering)")
+    plt.subplots_adjust(left=0.3, right=0.9)
+    dendrogram(linkMat, orientation="right", labels=authors, leaf_font_size=8)
     # encode plot for passing to html
     img = BytesIO()
     plt.savefig(img, format="png")
@@ -204,12 +204,12 @@ def displayDendro(vectorList):
     '''
     authors = [vector[0] for vector in vectorList]
     statlineMatrix = [vector[1:] for vector in vectorList]
-    linkMat = linkage(statlineMatrix, method="average")
+    linkMat = linkage(statlineMatrix, method="ward")
     # make plot
     plt.figure(1)
     plt.title("author comparisons")
-    plt.subplots_adjust(bottom=0.25)
-    dendrogram(linkMat, labels=authors, leaf_rotation=90, leaf_font_size=8)
+    plt.subplots_adjust(left=0.3, right=0.9)
+    dendrogram(linkMat, orientation="right", labels=authors, leaf_font_size=8)
     plt.show()
 
 

@@ -16,36 +16,16 @@ app.secret_key = 'B5Zy93g/3yQ T~XJK?jmM]EWP/!RO'
 def main():
 	return render_template('main.html')
 
-@app.route('/home')
-
 @app.route('/text', methods=['POST'])
 def textAnalyze():
+	session.clear()
 	title = request.form["title"]
 	text = request.form['textAreaItem']
 	genre = request.form['Genre']
 	vectorList, report = Submission(title, text, genre).genReport()
-	session["vectorList"] = vectorList
-	return render_template('report.html', report=report)
-
-@app.route('/plot')
-def dendroplot():
-
-	vectorList = session.get("vectorList", None)
 	img = dendroPlot(vectorList)
 	png_data = base64.encodebytes(img.getvalue())
-	'''
-	img = BytesIO()
-	y = [1,2,3,4,5]
-	x = [0,2,1,3,4]
-
-	plt.plot(x,y)
-	plt.savefig(img, format='png')
-	img.seek(0) # rewind to beginning of file
-	png_data = base64.encodebytes(img.getvalue())
-	'''
-	session.clear() #TODO: make sure this placement doesn't cause bugs
-	return render_template('dendroplot.html', png_data=png_data, vectorList=vectorList)
-
+	return render_template('report.html', png_data=png_data, report=report)
 
 if __name__ == '__main__':    #initize web application
     app.run(debug=True)

@@ -1,14 +1,41 @@
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!doctype html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Style Report</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/report.css') }}">
+</head>
 
-<dl>
-  {% for key, value in report.items() %}
-    <dt>{{ key }}</dt>
-    <dd>{{ value }}</dd>
-  {% endfor %}
-</dl>
-<p><a href=/plot>Click here</a> to view where your style fits with other authors</p>
+<body>
 
-<!--need to modify this: omit names, custom format. Call each key separately.-->
+<div id="overlay">
+  <img id="plot" src="data:image/png;base64,{{ png_data.decode() }}">
+   <!-- Button to close the overlay navigation -->
+  <a href="javascript:void(0)" class="closebtn" onclick="off()">&times;</a>
+</div>
+
+<div id=mainReport>
+<h2>{{ report["title"] }}</h2>
+<h3>Similarity Report</h3>
+<p>{{ report["similarity report"] }} <button id="showButton" onclick="on()"><u>Click here</u></button> to view where your style fits among all authors in our database.</p>
+<h3>Recommendations</h3>
+<p>{{ report["recommendations"] }}</p>
+
+<h3>Key Metrics</h3>
+<p>Flesch-Kincaid reading grade level: {{ report["fkLevel"] }}</p>
+<p>Average length of sentence: {{ report["average senLeng"] }}</p>
+<p>Variability of sentence lengths: {{ report["senLeng CV"] }}</p>
+<p>Lexical Diversity per 500 words: {{ report["lexical diversity"] }}</p>
+<p>Nominalizations percentage: {{ report["nominalizations"] }}</p>
+<p>Passive verbs percentage: {{ report["passivity"] }}</p>
+<p>'To be' verb usage rate: {{ report["toBeCount"] }}</p>
+</div>
+
+<script>
+function on() {
+    document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+    document.getElementById("overlay").style.display = "none";
+}
+</script>

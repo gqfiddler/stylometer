@@ -13,5 +13,5 @@ Scalia.txt, Antonin Scalia
 Smith.txt, Zadie Smith
 Sontag.txt, Susan Sontag
 StudentEssays_Strong.txt, strong undergraduate writers
-StudentEssays_Poor.txt, poor undergraduate writers
+StudentEssays_Weak.txt, weak undergraduate writers
 Wallace.txt, David Foster Wallace
