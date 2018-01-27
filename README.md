@@ -1,5 +1,5 @@
 THE APP
-Stylometer is an Flask app with python3.  It launches web pages that process any text the user submits and display key metrics, author comparisons, and stylistic recommendations.
+Stylometer is an Flask app with python3.  It launches web pages that process user-submitted text and display key metrics, author comparisons, and stylistic recommendations.
 
 HOW IT WORKS
 The metrics used for analysis and comparison are all fairly straightforward. (Brief descriptions can be found in __init__.py file of the modules/metrics package.)  The actual method of comparison is simply minimum 2nd-order Minkowski distance between data vectors; results are displayed as a list of the three most similar authors, and as a dendrogram that includes the submitter ("You") among the sample authors.  Recommendations are generated based on deviations from exemplary texts in comprehensible and practical stylistic characteristics such as adverb (over)use or sentence length variation.
