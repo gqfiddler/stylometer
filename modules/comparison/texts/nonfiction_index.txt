@@ -1,0 +1,17 @@
+Atlantic.txt, writers for The Atlantic
+Barry.txt, Dave Barry
+Coates.txt, Ta-Nehisi Coates
+Chesterton.txt, G.K. Chesterton
+Didion.txt, Joan Didion
+Foucault.txt, Michel Foucault
+Heidegger.txt, Martin Heidegger
+hooks.txt, bell hooks
+Klosterman.txt, Chuck Klosterman
+Orwell.txt, George Orwell
+Robinson.txt, Marilynne Robinson
+Scalia.txt, Antonin Scalia
+Smith.txt, Zadie Smith
+Sontag.txt, Susan Sontag
+StudentEssays_Strong.txt, strong undergraduate writers
+StudentEssays_Weak.txt, weak undergraduate writers
+Wallace.txt, David Foster Wallace
