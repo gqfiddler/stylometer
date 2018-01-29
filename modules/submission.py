@@ -1,11 +1,13 @@
 '''
 contains class Submission for submitted texts and analysis-derived text data
 '''
+import nltk
+import os
 import modules.metrics as metrics
 import modules.comparison.comparison as comparison
 import modules.dataGenerator as dataGenerator
 from modules.textObject import TextObject
-import nltk
+
 
 class Submission(object):
     '''
@@ -33,10 +35,13 @@ class Submission(object):
         toBeVerbCount = self.vector[2]
         similarityReport = comparison.findClosest(self.vector, self.genre)
         recommendations = comparison.makeRecommendations(self.vector, self.genre)
+        THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
         if self.genre == "nonfiction":
-            vectorList = comparison.readVectors("modules/comparison/data/allNonfictionDataSTDD.csv")
+            nonfictionFileName = os.path.join(THIS_FOLDER, "comparison/data/allNonfictionDataSTDD.csv")
+            vectorList = comparison.readVectors(nonfictionFileName)
         if self.genre == "fiction":
-            vectorList = comparison.readVectors("modules/comparison/data/allFictionDataSTDD.csv")
+            fictionFileName = os.path.join(THIS_FOLDER, "comparison/data/allFictionDataSTDD.csv")
+            vectorList = comparison.readVectors(fictionFileName)
         vectorList.append(self.stdVector)
 
         report = {

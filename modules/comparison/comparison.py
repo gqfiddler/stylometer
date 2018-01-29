@@ -22,6 +22,7 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 from scipy.spatial.distance import minkowski
 from io import BytesIO
 import base64
+import os
 
 def readVectors(filename):
     '''
@@ -53,12 +54,13 @@ def standardizeVector(textVector, genre):
             dataset of exemplary writing in its genre
     '''
     # get comparison set
+    THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
     if genre == "fiction":
-        comparisonSet = readVectors("modules/comparison/data/exemplaryFictionData.csv")
-        standardizedCompSet = readVectors("modules/comparison/data/exemplaryFictionDataSTDD.csv")
+        comparisonSet = readVectors(os.path.join(THIS_FOLDER, "data/exemplaryFictionData.csv"))
+        standardizedCompSet = readVectors(os.path.join(THIS_FOLDER, "data/exemplaryFictionDataSTDD.csv"))
     if genre == "nonfiction":
-        comparisonSet = readVectors("modules/comparison/data/exemplaryNonfictionData.csv")
-        standardizedCompSet = readVectors("modules/comparison/data/exemplaryNonfictionDataSTDD.csv")
+        comparisonSet = readVectors(os.path.join(THIS_FOLDER, "data/exemplaryNonfictionData.csv"))
+        standardizedCompSet = readVectors(os.path.join(THIS_FOLDER, "data/exemplaryNonfictionDataSTDD.csv"))
     # standardize textVector
     stdTextVector = [textVector[0]]
     for i in range(1, len(textVector)):
@@ -81,10 +83,11 @@ def findClosest(textVector, genre):
         to greatest
     '''
     distanceTuples = []
+    THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
     if genre == "fiction":
-        standardizedCompSet = readVectors("modules/comparison/data/exemplaryFictionDataSTDD.csv")
+        standardizedCompSet = readVectors(os.path.join(THIS_FOLDER, "data/exemplaryFictionDataSTDD.csv"))
     if genre == "nonfiction":
-        standardizedCompSet = readVectors("modules/comparison/data/exemplaryNonfictionDataSTDD.csv")
+        standardizedCompSet = readVectors(os.path.join(THIS_FOLDER, "data/exemplaryNonfictionDataSTDD.csv"))
     stdTextVector = standardizeVector(textVector, genre)
     # generate minkowski distance for each comparison text
     for vector in standardizedCompSet:

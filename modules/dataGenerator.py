@@ -14,6 +14,7 @@ from modules.textObject import TextObject
 import csv
 import random
 import numpy
+import os
 
 def genTable(indexFileName, newFileName=None):
     '''
@@ -37,7 +38,8 @@ def genTable(indexFileName, newFileName=None):
     vectors = [columnTitles]
     for line in lines:
         items = line.split(",")
-        textFileName = "modules/comparison/texts/" + items[0]
+        THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+        textFileName = os.path.join(THIS_FOLDER, "comparison/texts/"+items[0])
         textFile = open(textFileName, "r")
         text = textFile.read()
         authorName = items[1][:-1]
@@ -50,7 +52,7 @@ def genTable(indexFileName, newFileName=None):
             filename += ".csv"
     else:
         filename = "textData" + str(int(random.random()*10**5)) + ".csv"
-    filename = "modules/comparison/data/" + filename
+    filename = os.path.join(THIS_FOLDER, "comparison/data/"+filename)
     with open(filename, "w") as indexFile:
         csvWriter = csv.writer(indexFile)
         for vector in vectors:

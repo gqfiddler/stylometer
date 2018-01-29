@@ -5,7 +5,6 @@ from flask import Flask, render_template, request, session
 from modules.submission import Submission
 from modules.comparison.comparison import dendroPlot
 import matplotlib.pyplot as plt
-from io import BytesIO
 import base64
 
 app = Flask(__name__)
