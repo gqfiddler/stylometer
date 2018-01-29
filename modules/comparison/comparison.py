@@ -91,7 +91,7 @@ def findClosest(textVector, genre):
     stdTextVector = standardizeVector(textVector, genre)
     # generate minkowski distance for each comparison text
     for vector in standardizedCompSet:
-        distance = minkowski(stdTextVector[1:], vector[1:])
+        distance = minkowski(stdTextVector[1:], vector[1:], 2)
         distanceTuples.append((round(distance, 2), vector[0]))
     # return three closest (distance, author) tuples
     distanceTuples.sort()
