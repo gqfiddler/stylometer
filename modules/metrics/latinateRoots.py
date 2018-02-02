@@ -51,6 +51,7 @@ latinateSuffixes = {
 "ally": "RB",
 "an": "JJ",
 "anly": "RB",
+"ate": "JJ",
 "ent": "JJ",
 "ently": "RB",
 "ic": "JJ",
@@ -95,5 +96,5 @@ latinateSuffixes = {
 "tude": "NN",
 "tudes": "NNS",
 "ure": "NN",
-"ures": "NNS",
+"ures": "NNS"
 }
