@@ -16,19 +16,17 @@ def wordify(text):
     '''
     Args:
         text: a single string of raw text
-
     Returns:
         list of words in text
     '''
     # would be shorter with regex, but I haven't really learned that yet
-    removablePunct = [",",";",":","—","\"","(",")","..."]
+    removablePunct = [",",";",":","—","–","\"","(",")","..."]
     spacePunct = [".","!","?","-","\n"]
     for punct in removablePunct:
         text = text.replace(punct, "")
     for punct in spacePunct:
         text = text.replace(punct, " ")
-    return [word for word in [word.lower() for word in text.split(" ")] \
-    if word not in [" ", ""]]
+    return [word.lower() for word in text.split(" ") if word not in [" ", ""]]
 
 def wordCount(text):
     '''

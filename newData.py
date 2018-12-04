@@ -9,13 +9,13 @@ import os
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 
-# ADD AUTHOR:
+# ADD AUTHOR TO TABLES:
 # authorName = "Susan Sontag"
 # sourceFileName = os.path.join(THIS_FOLDER, "modules/comparison/texts/Sontag.txt")
 # targetFileName = os.path.join(THIS_FOLDER, "modules/comparison/data/exemplaryNonfictionData.csv")
 # dataGenerator.addAuthor(authorName, sourceFileName, targetFileName)
 
-# GENERATE TABLES:
+# GENERATE NEW TABLES:
 # indexFileName = os.path.join(THIS_FOLDER, "modules/comparison/texts/exemplary_nonfiction_index.txt")
 # newFileName = "exemplaryNonfictionData"
 # dataGenerator.genTable(indexFileName, newFileName)

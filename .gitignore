@@ -2,6 +2,7 @@ venv
 *.pyc
 .DS_Store
 scratchpad2.py
+LexDivProcessing.py
 Atlantic.txt
 Barry.txt
 Coates.txt
