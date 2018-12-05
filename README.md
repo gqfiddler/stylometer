@@ -1,13 +1,15 @@
 <img src='https://github.com/gqfiddler/stylometer/blob/master/app%20screenshot.png?raw=true' width="460" align="left"/>
 
-
-
-
 # the app
 Stylometer is an Flask app with python3.  It launches web pages that process user-submitted text and display key metrics, author comparisons, and stylistic recommendations.  You can view and use the app online at http://gqfiddler.pythonanywhere.com/
 
 # how it works
-The metrics used for analysis and comparison are all fairly straightforward. (Brief descriptions can be found in the __init__.py file of the modules/metrics package.)  The actual method of comparison is simply minimum 2nd-order Minkowski distance between data vectors; results are displayed as a list of the three most similar authors, and as a dendrogram that includes the submitter ("You") among the sample authors.  Recommendations are generated based on deviations from exemplary texts in comprehensible and practical stylistic characteristics such as adverb (over)use or sentence length variation.
+### Metrics
+The metrics used for stylistic analysis and comparison are fairly straightforward: lexical diversity, reading level, adverb density, clause types, etc. A brief description of each can be found in the __init__.py file of the modules/metrics package.
+### Comparison
+The method of comparison is simply minimum 2nd-order Minkowski distance between data vectors.  Results are displayed as a list of the three most similar authors by distance, and as a dendrogram of all authors, including the submitter ("You") among the sample authors.  
+### Recommendations
+Recommendations are generated based on deviations from stylistically exemplary texts (not all stylistic comparisons are exemplary), and are communicated in terms of writing charactersitcs (e.g. sentence length) that are easy to comprehend and modify.
 
 # installation (macOS)
 To install and run the app on your localhost:
