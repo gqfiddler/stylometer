@@ -1,7 +1,7 @@
 <img src='https://github.com/gqfiddler/stylometer/blob/master/app%20screenshot.png?raw=true' width="460" align="left"/>
 
 # the app
-Stylometer is an Flask app with python3.  It launches web pages that process user-submitted text and display key metrics, author comparisons, and stylistic recommendations.  You can view and use the app online at http://gqfiddler.pythonanywhere.com/
+Stylometer is an Flask app with python3.  It launches web pages that process user-submitted text and displays key metrics, author comparisons, and stylistic recommendations.  You can view and use the app online at http://gqfiddler.pythonanywhere.com/
 
 # how it works
 ### Metrics
