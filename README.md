@@ -21,8 +21,8 @@ To add other authors/texts to the comparison dataset:
 - first add the desired txt file to the modules/comparison/texts directory.
 - then either call the appropriate functions from modules/dataGenerator.py, or just use the commented-out function calls in newData.py.
 
-# about the texts
-Unfortunately, for copyright reasons, only a few of the works used to generate the comparison text data have been included in the modules/comparison/texts directory.  The Bibliography.txt file under modules/comparison/texts lists which works were used for which authors.
+# the texts
+The texts used to generate the comparison data are drawn from a broad range of well-known authors (Neil Gaiman, Zadie Smith, Joan Didion, etc.).  Unfortunately, for copyright reasons, only a few of these works are included in this repository (they're in the modules/comparison/texts directory).  The Bibliography.txt file under modules/comparison/texts lists which works were used for which authors.
     If you want to add data, using the "addAuthor" function in modules/dataGenerator.py will process metrics for a new text and add them as a new row in the specified .csv file(s).  If you want to use "genTable" to process multiple texts at once, be sure you pass in a new filename; if the name matches an existing .csv file, it will replace that file.
 
 # license
